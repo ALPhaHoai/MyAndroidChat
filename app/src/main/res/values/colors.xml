@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#000000</color>
+
+
+    <color name="search_background_color">#ACACAC</color>
+    <color name="send_message_bottom_color">#F1F1F1</color>
+    <color name="message_details_text_color">#838b83</color>
+    <color name="apploizc_transparent_color">#00000000</color>
+    <color name="edittext_hint_color">#bdbdbd</color>
+    <color name="applozic_theme_color_control_activated">#ff0099cc</color>
+    <color name="applozic_theme_color_control_highlight">#ff0099ee</color>
+    <color name="avartar_background_color">#888282</color>
+    <color name="incoming_message_background_color">#CACACA</color>
+    <color name="sending_message_background_color">#AF3737</color>
+    <color name="separate_line_color">#C9C9C9</color>
+</resources>

@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">AndroidChat</string>
+    <string name="title_section6">Messages</string>
+    <string name="title_section7">Log out</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="snap_text">Oh Snap!</string>
+    <string name="account_disconnection_message">We’re sorry but messaging is not \navailable at the moment.\nPlease contact support for more details</string>
+    <string name="delivery_status">delivery status</string>
+    <string name="testTime">testTime</string>
+    <string name="message">Noi dung tin nhan</string>
+    <string name="self_destruct">14 min ago</string>
+    <string name="search_hint">Tìm kiếm</string>
+    <string name="input_message_hint">Aa</string>
+</resources>
