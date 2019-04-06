@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -16,6 +17,7 @@ import com.along.androidchat.model.Message;
 import com.along.androidchat.model.Room;
 import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.Socket;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,6 +32,7 @@ import java.util.List;
  * Time: 11:21 PM
  */
 public class ChatRoomActivity extends AppCompatActivity {
+    private static final String TAG = "ChatRoomActivity";
     public FloatingActionButton fab;
     public RecyclerView myRecylerView;
     public List<Message> MessageList = new ArrayList<>();
@@ -50,8 +53,9 @@ public class ChatRoomActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.conversation_fragment);
         Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            currentRoom = new Room(extras.getString("currentRoom"), extras.getString("sender"), extras.getString("name"), extras.getString("avatar"));
+        if (extras != null && extras.containsKey("currentRoom")) {
+            Log.d(TAG, "onCreate: " + extras.getString("currentRoom"));
+            this.currentRoom = new Gson().fromJson(extras.getString("currentRoom"), Room.class);
             // get the nickame of the user
             Nickname = extras.getString(MainActivity.NICKNAME);
         }

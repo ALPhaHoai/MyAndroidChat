@@ -10,31 +10,39 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:gravity="center|right">
+        android:gravity="center|end"
+        android:orientation="vertical">
 
         <EditText
-            android:id="@+id/mal"
+            android:id="@+id/search_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/search_hint"
-            android:inputType="text"
             android:textColor="#000"
+            android:singleLine="true"
             android:background="@drawable/search_background"
-            android:padding="12dp"
-            android:layout_marginTop="20dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingRight="12dp"
+            android:paddingLeft="12dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:drawableLeft="@drawable/search"
-            android:drawablePadding="16dp"
-            />
+            android:drawableStart="@drawable/search"
+            android:drawablePadding="14dp" />
 
+        <View
+            android:id="@+id/separate_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/separate_line_color" />
     </LinearLayout>
-
 
     <LinearLayout
         android:layout_below="@+id/search_bar"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:weightSum="3"
         android:orientation="vertical"
         android:layout_width="match_parent"

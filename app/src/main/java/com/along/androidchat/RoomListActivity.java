@@ -15,6 +15,7 @@ import com.along.androidchat.model.Room;
 import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,6 +23,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Long
@@ -59,7 +61,7 @@ public class RoomListActivity extends AppCompatActivity {
             createConnection();
         }
 
-        myRecylerViewRoomList =  findViewById(R.id.roomList);
+        myRecylerViewRoomList = findViewById(R.id.roomList);
         RecyclerView.LayoutManager mLayoutManagerRoom = new LinearLayoutManager(getApplicationContext());
         myRecylerViewRoomList.setLayoutManager(mLayoutManagerRoom);
         myRecylerViewRoomList.setItemAnimator(new DefaultItemAnimator());
@@ -102,15 +104,7 @@ public class RoomListActivity extends AppCompatActivity {
 
 
                             Intent intent = new Intent(RoomListActivity.this, ChatRoomActivity.class);
-                            if (user != null) {
-                                intent.putExtra("sender", user.getString("User_ID"));
-                            } else {
-                                intent.putExtra("sender", "User_ID");
-                            }
-                            intent.putExtra("receive", currentRoom.getUserID());
-                            intent.putExtra("currentRoom", currentRoom.getRoomName());
-                            intent.putExtra("name", currentRoom.getName());
-                            intent.putExtra("avatar", currentRoom.getAvatar());
+                            intent.putExtra("currentRoom", new Gson().toJson(currentRoom));
                             startActivity(intent);
 
 //                            chatBoxAdapter.notifyDataSetChanged();
@@ -275,8 +269,9 @@ public class RoomListActivity extends AppCompatActivity {
                 Room room = new Room(
                         item.getString("Room_Name"),
                         item.getString("User_ID"),
-                        item.getString("name"),
-                        item.getString("Avatar")
+                        item.getString("name "),
+                        item.getString("Avatar"),
+                        Boolean.valueOf(item.getString("isActive"))
                 );
                 if (i == 0) {
                     currentRoom = room;
@@ -289,13 +284,15 @@ public class RoomListActivity extends AppCompatActivity {
     }
 
     private void setUpRoomListDataFake() {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 30; i++) {
             Room room = new Room(
-                    ("Room_Name"),
-                    ("User_ID"),
-                    ("name"),
-                    ("Avatar")
+                    ("Room_Name hhhhhhh hhhhhhhhhhhhhh hhhhhhhhhhhhhhhhhhhhh hhhhhhhhhhhhhhhhhhhh"),
+                    ("user_id"),
+                    ("name hhhhhhhhhhh hhhhhhhhhhhhhh hhhhhhhhhhhhhhhhhhhhh hhhhhhhhhhhhhhhhhhhhh"),
+                    ("Avatar"),
+                    new Random().nextInt(2) == 1
             );
+            room.setUnread((new Random().nextInt(10)));
             if (i == 0) {
                 currentRoom = room;
             }

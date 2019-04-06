@@ -99,8 +99,7 @@
 
             <EditText
                 android:id="@+id/inputMsg"
-                style="@style/Base.Widget.MaterialComponents.TextInputEditText"
-                android:layout_width="200dp"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
