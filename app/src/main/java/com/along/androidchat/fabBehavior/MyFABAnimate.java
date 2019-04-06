@@ -1,4 +1,4 @@
-package com.along.androidchat;
+package com.along.androidchat.fabBehavior;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

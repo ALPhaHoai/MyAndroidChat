@@ -13,6 +13,7 @@
         android:id="@+id/conversationRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         app:layout_constraintBottom_toTopOf="@+id/fab"
         app:layout_constraintEnd_toStartOf="@id/bottomlayout"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,14 +21,14 @@
 
 
     <android.support.design.widget.FloatingActionButton
+        android:visibility="invisible"
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:src="@drawable/down_arrow"
         app:backgroundTint="@color/white"
-        app:layout_anchor="@id/conversationRecyclerView"
-        app:layout_behavior="com.along.androidchat.MyFABAnimate"
+        app:fabSize="normal"
         app:layout_constraintBottom_toTopOf="@id/separate_line"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -57,6 +58,7 @@
 
 
         <ImageButton
+            android:onClick="btnCameraClicked"
             android:id="@+id/btnCamera"
             android:layout_width="30dp"
             android:layout_height="30dp"
@@ -65,7 +67,8 @@
             android:background="@drawable/camera" />
 
         <ImageButton
-            android:id="@+id/btnGalery"
+            android:onClick="btnGalleryClicked"
+            android:id="@+id/btnGallery"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="4dp"
@@ -73,7 +76,8 @@
             android:background="@drawable/gallery" />
 
         <ImageButton
-            android:id="@+id/btnAcctackment"
+            android:onClick="btnAttachmentClicked"
+            android:id="@+id/btnAttachment"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="4dp"

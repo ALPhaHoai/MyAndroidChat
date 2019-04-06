@@ -7,7 +7,6 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.AbsListView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -15,7 +14,6 @@ import android.widget.Toast;
 import com.along.androidchat.adapter.MessageListAdapter;
 import com.along.androidchat.model.Message;
 import com.along.androidchat.model.Room;
-import com.along.androidchat.utils.MyLayoutManager;
 import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.Socket;
 
@@ -66,8 +64,10 @@ public class ChatRoomActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                fab.hide();
 //                Toast.makeText(ChatRoomActivity.this, "Clicked", Toast.LENGTH_SHORT).show();
-                myRecylerView.scrollToPosition(messageListAdapter.getItemCount() - 1);
+                myRecylerView.smoothScrollToPosition(messageListAdapter.getItemCount() - 1);
+                fab.hide();
             }
         });
 
@@ -89,38 +89,31 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         //set the adapter for the recycler view
         myRecylerView.setAdapter(messageListAdapter);
+
 //        myRecylerView.scrollToPosition(MessageList.size() - 1);
-
         myRecylerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                if (dy > 0) {
+                if (dy > 20) {// Scrolling up
 //                    Toast.makeText(ChatRoomActivity.this, "Scrolling up", Toast.LENGTH_SHORT).show();
-                    fab.setVisibility(View.VISIBLE);
-                    // Scrolling up
-                } else {
+                    fab.show();
+                } else
+                    if (dy < -20 && fab.isShown()){// Scrolling down
 //                    Toast.makeText(ChatRoomActivity.this, "Scrolling down", Toast.LENGTH_SHORT).show();
-                    fab.setVisibility(View.INVISIBLE);
-                    // Scrolling down
+                    fab.hide();
                 }
             }
 
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
-
-                if (newState == AbsListView.OnScrollListener.SCROLL_STATE_FLING) {
-                    // Do something
-                } else if (newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
-                    // Do something
-                } else {
-                    // Do something
+                if (!recyclerView.canScrollVertically(2)  && fab.isShown()) {
+//                    Toast.makeText(ChatRoomActivity.this, "Last", Toast.LENGTH_LONG).show();
+                    fab.hide();
                 }
             }
         });
-
 
         setUpSocket();
 
@@ -258,5 +251,17 @@ public class ChatRoomActivity extends AppCompatActivity {
         if (socket != null) {
             socket.disconnect();
         }
+    }
+
+    public void btnCameraClicked(View view) {
+        Toast.makeText(this, "btnCameraClicked", Toast.LENGTH_SHORT).show();
+    }
+
+    public void btnGalleryClicked(View view) {
+        Toast.makeText(this, "btnGalleryClicked", Toast.LENGTH_SHORT).show();
+    }
+
+    public void btnAttachmentClicked(View view) {
+        Toast.makeText(this, "btnAttachmentClicked", Toast.LENGTH_SHORT).show();
     }
 }
