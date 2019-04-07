@@ -6,8 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.along.androidchat.adapter.RoomListAdapter;
@@ -24,6 +27,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Created by Long
@@ -32,8 +37,9 @@ import java.util.Random;
  */
 public class RoomListActivity extends AppCompatActivity {
     public RecyclerView myRecylerViewRoomList;
-    public List<Room> RoomList = new ArrayList<>();
+    public List<Room> RoomList = new ArrayList<>(), InitialRoomList;
     public RoomListAdapter roomListAdapter;
+    EditText searchInput;
 
     //declare socket object
     private Socket socket;
@@ -53,6 +59,26 @@ public class RoomListActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_box);
+        searchInput = findViewById(R.id.search_input);
+        searchInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //here is your code
+//                myadapter.getFilter().filter(s);
+//                listview.setAdapter(myadapter);
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                searchRoom(searchInput.getText().toString());
+                // TODO Auto-generated method stub
+            }
+        });
         if (getIntent().getExtras() != null) {
             result = getIntent().getExtras().getString("RESULT");
             // get the nickame of the user
@@ -69,6 +95,7 @@ public class RoomListActivity extends AppCompatActivity {
 
 //            setUpRoomListData();
         setUpRoomListDataFake();
+        InitialRoomList = new ArrayList<>(RoomList);
 
         // add the new updated list to the dapter
         roomListAdapter = new RoomListAdapter(RoomList);
@@ -124,6 +151,18 @@ public class RoomListActivity extends AppCompatActivity {
 
 
         setUpSocket();
+    }
+
+    private void searchRoom(final String query) {
+        List<Room> collect = new ArrayList<>();
+        if (query == null || query.length() == 0) {
+            collect = InitialRoomList;
+        } else {
+            collect = InitialRoomList.stream().filter((room) -> room.getName().contains(query)).collect(Collectors.toList());
+        }
+        RoomList.clear();
+        RoomList.addAll(collect);
+        roomListAdapter.notifyDataSetChanged();
     }
 
     private void setUpSocket() {
