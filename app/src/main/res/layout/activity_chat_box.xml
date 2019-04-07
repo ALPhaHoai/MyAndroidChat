@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RoomListActivity"
-    >
+    tools:context=".RoomListActivity">
 
     <LinearLayout
         android:id="@+id/search_bar"
@@ -19,21 +18,21 @@
             android:id="@+id/search_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/search_hint"
-            android:textColor="#000"
-            android:singleLine="true"
-            android:background="@drawable/search_background"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:paddingRight="12dp"
-            android:paddingLeft="12dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
             android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
-            android:drawableLeft="@drawable/search"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/search_background"
             android:drawableStart="@drawable/search"
-            android:drawablePadding="14dp" />
+            android:drawableLeft="@drawable/search"
+            android:drawablePadding="14dp"
+            android:hint="@string/search_hint"
+            android:paddingLeft="12dp"
+            android:paddingTop="5dp"
+            android:paddingRight="12dp"
+            android:paddingBottom="5dp"
+            android:singleLine="true"
+            android:textColor="#000" />
 
         <View
             android:id="@+id/separate_line"
@@ -43,12 +42,12 @@
     </LinearLayout>
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_below="@+id/search_bar"
         android:layout_marginTop="10dp"
-        android:weightSum="3"
         android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:weightSum="3">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/roomList"

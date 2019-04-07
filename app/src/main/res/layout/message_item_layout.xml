@@ -34,12 +34,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <android.support.constraint.Barrier
-        android:id="@+id/profileImageBarrier"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="end"
-        app:constraint_referenced_ids="alphabeticImage,contactImage" />
 
     <TextView
         android:id="@+id/smReceivers"
@@ -58,7 +52,7 @@
         android:textIsSelectable="false"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/createdAtTime"
-        app:layout_constraintStart_toStartOf="@+id/profileImageBarrier"
+        app:layout_constraintStart_toStartOf="@+id/contactImage"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -88,7 +82,7 @@
         android:layout_marginStart="12dp"
         android:src="@drawable/applozic_ic_action_attachment"
         android:visibility="gone"
-        app:layout_constraintStart_toEndOf="@+id/profileImageBarrier"
+        app:layout_constraintStart_toEndOf="@+id/contactImage"
         app:layout_constraintTop_toBottomOf="@+id/smReceivers" />
 
     <TextView
